@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {# Run composer require symfony/webpack-encore-bundle to start using Symfony UX #}
+        {% block stylesheets %}
+            <link href={{asset("assets/css/bootstrap.min.css")}} rel="stylesheet" />
+            <link href={{asset("assets/css/font-awesome.min.css")}} rel="stylesheet" />
+            <link href={{asset("assets/css/flaticon-set.css")}} rel="stylesheet" />
+            <link href={{asset("assets/css/elegant-icons.css")}} rel="stylesheet" />
+            <link href={{asset("assets/css/magnific-popup.css")}} rel="stylesheet" />
+            <link href={{asset("assets/css/owl.carousel.min.css")}} rel="stylesheet" />
+            <link href={{asset("assets/css/owl.theme.default.min.css")}} rel="stylesheet" />
+            <link href={{asset("assets/css/animate.css")}} rel="stylesheet" />
+            <link href={{asset("assets/css/bootsnav.css")}} rel="stylesheet" />
+            <link href={{asset("assets/css/style.css")}} rel="stylesheet">
+            <link href={{asset("assets/css/responsive.css")}} rel="stylesheet" />
+            <link rel="stylesheet" type="text/css" href={{asset("assets/css/style.css")}}>
+        {% endblock %}
+        {% block javascripts %}
+        <script
+  src="https://code.jquery.com/jquery-3.6.3.js"
+  integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+  crossorigin="anonymous"></script>
+            <script src={{asset("assets/js/bootstrap.min.js")}}></script>
+            <scripReRt src={{asset("assets/js/jquery-1.12.4.min.js")}}></script>
+            <script src={{asset("assets/js/equal-height.min.js")}}></script>
+            <script src={{asset("assets/js/jquery.appear.js")}}></script>
+            <script src={{asset("assets/js/jquery.easing.min.js")}}></script>
+            <script src={{asset("assets/js/jquery.magnific-popup.min.js")}}></script>
+            <script src={{asset("assets/js/modernizr.custom.13711.js")}}></script>
+            <script src={{asset("assets/js/owl.carousel.min.js")}}></script>
+            <script src={{asset("assets/js/wow.min.js")}}></script>
+            <script src={{asset("assets/js/isotope.pkgd.min.js")}}></script>
+            <script src={{asset("assets/js/imagesloaded.pkgd.min.js")}}></script>
+            <script src={{asset("assets/js/count-to.js")}}></script>
+            <script src={{asset("assets/js/YTPlayer.min.js")}}></script>
+            <script src={{asset("assets/js/jquery.nice-select.min.js")}}></script>
+            <script src={{asset("assets/js/bootsnav.js")}}></script>
+            <script src={{asset("assets/js/main.js")}}></script>
+        {% endblock %}
+    </head>
+    <body>
+   <header id="home">
+
+        <!-- Start Navigation -->
+        <nav class="navbar navbar-default attr-border navbar-sticky bootsnav">  
+
+            <div class="container">
+            <!-- Start Header Navigation -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" >
+                        <img src="public/assets/img/logo.png" class="logo" alt="Logo">
+                    </a>
+                </div>
+                <!-- End Header Navigation -->
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav navbar-right" data-in="#" data-out="#">
+                        <li class="dropdown">
+                            <a href="{{path('home')}}" >Accueil</a>
+                        </li>
+                            <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Posts <i class="lni-chevron-down"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a  href="{{ path('list_post') }}">Posts list</a></li>
+                                <li><a href="{{ path('Create_post') }}">Add Post</a></li>
+
+                            </ul>
+                        </li>   
+                        <li class="dropdown">
+                           <a  href="{{path('home')}}">Medcin</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="{{path('home')}}">Medicament</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="{{path('home')}}">FOG</a>
+                        </li>
+                        
+                        <li class="dropdown">
+                            <a href="{{path('home')}}">Reclamation</a>
+                        </li>
+                              <div class="header-top-right float-right">
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <a href="{{ path('fos_user_security_logout') }}"><i class="lni-lock"></i> Log Out</a>
+{% elseif is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
+                        <a href="{{ path('fos_user_security_login') }}" class="header-top-button"><i class="lni-lock"></i> Log In</a> |
+                        <a href="{{ path('fos_user_registration_register') }}" class="header-top-button"><i class="lni-pencil"></i> Register</a>
+                {% endif %}
+                    </div>
+                    
+
+        </nav>
+        <!-- End Navigation -->
+
+    </header>
+   
+    {% block body %}
+      
+    {% endblock %}
+     <footer class="footer-main container-fluid no-padding">
+			<!-- Container -->
+			<div class="container">
+				<!-- Contact Detail -->
+				
+				
+				<div class="row">
+					<div class="col-md-4 col-sm-6 col-xs-12">
+						<aside class="widget widget-about">
+							<h3><img src="public\assets\img\logo.png"  alt="Logo" /></h3>
+							<p>Our website is going to help patients to do reservations or consultations or talk with doctors  online</p>
+							<div class="time-schedule">
+                                <p style="color:blue"> The time that our doctors are open for work </p>
+								<p>Monday - Friday <span>8.00 - 18.00</span></p>
+								<p>Saturday <span>8.00 - 18.00</span></p>
+								<p>Sunday <span>8.00 - 13.00</span></p>
+							</div> 
+						</aside>
+					</div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                    <aside class="widget widget-links">
+							<h3 class="widget-title">Our Team</h3>
+							<ul>
+								<li><a href="#" >Khalil Troudi</a></li>
+								<li><a href="#" >Belhassen Zahrouni</a></li>
+								<li><a href="#" >Rihab Kaibi</a></li>
+								<li><a href="#" >Emna Mazlout</a></li>
+								<li><a href="#">Mohamed Amine Sidhom</a></li>
+								<li><a href="#" >Mohamed Haythem Sessi</a></li>
+							</ul>
+						</aside>
+                    </div>
+					<div class="col-md-4 col-sm-6 col-xs-12">
+						<aside class="widget widget-links">
+							<h3 class="widget-title">Our Services</h3>
+							<ul>
+								<li><a href="#" title="Births">Consultation</a></li>
+								<li><a href="#" title="Dental">Doctors List</a></li>
+								<li><a href="#" title="Pulmonary">Reservation</a></li>
+								<li><a href="#" title="Nuclear magnetic">Fog</a></li>
+							</ul>
+						</aside>
+					</div>
+                    
+					
+						
+				</div>
+			</div><!-- Container /- -->
+			<!-- Bottom Footer -->
+			<div class="container-fluid no-padding bottom-footer">
+				<p>&copy; 2023 DOC. All Rights Reserved.</p>
+			</div><!-- Bottom Footer /- -->
+		</footer>
+    </body>
+    </html>

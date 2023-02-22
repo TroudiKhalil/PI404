@@ -1,0 +1,61 @@
+{% extends 'admin.html.twig' %}
+{% block body %}
+<div class="page-wrapper">
+         
+            <div class="container-fluid">
+               
+                <div class="row page-titles">
+                   
+                    <div class="col-md-7 align-self-center">
+                        
+                    </div>
+                </div>
+               
+                <div class="row">
+                   
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                            
+                                <h4 class="card-title">table des type des Rendez-Vous</h4>
+                                
+                               
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                
+                                                <th>Type</th>
+                                                <th>Description</th>
+                                                <th>Actions</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        {% for posts in posts %}
+                                        <tbody>
+                                            <tr> 
+                                                <td>{{ posts.id }}</td>
+                                                <td>{{ posts.title }}</td>
+                                                <td>{{ posts.description }}</td>
+                                                <td>
+                                               <a href="{{ path('delete_post', {'id': posts.id}) }}"><button type="button" class="btn btn-sm btn-outline-danger">delete</button></a>
+                                               <hr>
+                                                </td>
+                                                
+                                            </tr>
+
+                                        </tbody>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+       
+            
+           
+        </div>
+{% endblock %}
