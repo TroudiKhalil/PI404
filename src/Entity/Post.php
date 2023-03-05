@@ -6,29 +6,35 @@ use App\Entity\Postcomment;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use phpDocumentor\Reflection\Types\Self_;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: "App\Repository\PostRepository")]
 #[ORM\Table(name: "post")]
 #[ORM\HasLifecycleCallbacks()]
 class Post
 {
+
     #[ORM\Id]
     #[ORM\Column(type: "integer")]
     #[ORM\GeneratedValue(strategy: "AUTO")]
+    #[Groups("Post")]
     protected $id;
 
     #[ORM\Column(type: "string", length: 255)]
     #[Assert\NotBlank (message: "title is required") ]
     #[Assert\Length(min:3,minMessage: "lenght min 3")]
+    #[Groups("Post")]
     private $title;
 
     #[ORM\Column(type: "string", length: 255)]
     #[Assert\NotBlank (message: "description is required") ]
     #[Assert\Length(min:3,minMessage: "lenght min 3")]
+    #[Groups("Post")]
     private $description;
 
     #[ORM\Column(name: "photo", type: "string", length: 255, nullable:true)]
     #[Assert\File(maxSize: "500k", mimeTypes: ["image/jpeg", "image/jpg", "image/png", "image/GIF"])]
+    #[Groups("Post")]
     private $photo;
 
     #[ORM\ManyToOne(targetEntity: "App\Entity\User")]
@@ -36,6 +42,7 @@ class Post
     private $creator;
 
     #[ORM\Column(name: "postdate", type: "date")]
+    #[Groups("Post")]
     private $postdate;
 
     #[ORM\OneToMany(targetEntity: Postcomment::class, mappedBy: "post", cascade: ["remove"], orphanRemoval: true)]

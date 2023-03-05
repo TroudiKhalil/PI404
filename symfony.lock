@@ -1,4 +1,7 @@
 {
+    "brokoskokoli/star-rating-bundle": {
+        "version": "v3.0.3"
+    },
     "doctrine/annotations": {
         "version": "1.14",
         "recipe": {
@@ -40,6 +43,15 @@
     },
     "friendsofsymfony/user-bundle": {
         "version": "v3.1.0"
+    },
+    "jms/serializer-bundle": {
+        "version": "5.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "4.0",
+            "ref": "cc04e10cf7171525b50c18b36004edf64cb478be"
+        }
     },
     "knplabs/knp-paginator-bundle": {
         "version": "v5.4.0"
@@ -124,6 +136,15 @@
             "./src/Controller/.gitignore",
             "./src/Kernel.php"
         ]
+    },
+    "symfony/google-mailer": {
+        "version": "5.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "4.4",
+            "ref": "f8fd4ddb9b477510f8f4bce2b9c054ab428c0120"
+        }
     },
     "symfony/mailer": {
         "version": "5.4",

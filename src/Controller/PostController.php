@@ -1,18 +1,24 @@
 <?php
 
 namespace App\Controller;
-
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use App\Entity\Post;
 use App\Entity\Postcomment;
 use App\Form\PostType;
 use App\Form\PostcommentType;
-
+use App\Repository\PostRepository;
+use App\Service\CommentNotificationService;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Knp\Component\Pager\PaginatorInterface;
+
 #[Route('/Post')]
 
 class PostController extends AbstractController
@@ -72,10 +78,15 @@ class PostController extends AbstractController
     }
     #[Route('/list_post', name: 'list_post')]
 
-    public function listpostAction(Request $request): Response
+    public function listpostAction(Request $request, PostRepository $PostRepository, PaginatorInterface $paginator): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
         $posts = $entityManager->getRepository(Post::class)->findAll();
+        $posts = $paginator->paginate(
+        $posts, /* query NOT result */
+        $request->query->getInt('page', 1)/*page number*/,
+            3/*limit per page*/
+        );
         return $this->render('Post/list.html.twig', [
             "posts" => $posts,
         ]);
@@ -122,7 +133,7 @@ class PostController extends AbstractController
     }
     #[Route('/detailed_post/{id}', name: 'detailed_post')]
 
-    public function showdetailedAction($id,Request $request, UserInterface $user): Response
+    public function showdetailedAction($id,Request $request, UserInterface $user,CommentNotificationService $notificationService): Response
     {
         $comment = new Postcomment();
                 $form = $this->createForm(PostcommentType::class, $comment);
@@ -135,7 +146,11 @@ class PostController extends AbstractController
                     $entityManager = $this->getDoctrine()->getManager();
                     $entityManager->persist($comment);
                     $entityManager->flush();
+
                     $this->addFlash('info', 'Comment Added Successfully !');
+                }
+                if ($comment->isApproved() === false) {
+                    $notificationService->sendEmailIfNotApproved($comment);
                 }
         $entityManagere = $this->getDoctrine()->getManager();
         $post = $entityManagere->getRepository(Post::class)->find($id);
@@ -150,6 +165,17 @@ class PostController extends AbstractController
             'form'=>$form->createView(),
             ]);
         
+    }
+    #[Route('/admin/postcomments/approve/{id}', name: 'admin_postcomments_approve')]
+    public function approve(Postcomment $postComment): RedirectResponse
+    {
+        $postComment->setApproved(true);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($postComment);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('comment');
     }
             #[Route('/search', name: 'search')]
 
@@ -184,6 +210,14 @@ class PostController extends AbstractController
             $em->flush();
             return $this->redirectToRoute('list_post');
         }
+      
+        #[Route('/pag', name: 'app_post_pagination' )]
+        public function khaledsss(Request $request, PostRepository $PostRepository, PaginatorInterface $paginator): Response
+        {
+            $Postpag = $PostRepository->findAll();
+    
 
-            
+    
+            return $this->redirectToRoute('list_post');
 }            
+}

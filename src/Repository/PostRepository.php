@@ -106,6 +106,22 @@ class PostRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function SortBytitle(){
+        return $this->createQueryBuilder('e')
+            ->orderBy('e.title','ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+    
+    public function findBytitle( $title)
+    {
+        return $this-> createQueryBuilder('e')
+            ->andWhere('e.title LIKE :title')
+            ->setParameter('title','%' .$title. '%')
+            ->getQuery()
+            ->execute();
+    }
 
 //    /**
 //     * @return Post[] Returns an array of Post objects

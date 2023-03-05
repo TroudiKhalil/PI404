@@ -3,7 +3,9 @@
 namespace App\Entity;
 use App\Repository\PostcommentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Service\CommentNotificationService;
 
 #[ORM\Entity(repositoryClass: PostcommentRepository::class)]
 #[ORM\Table(name: "postcomment")]
@@ -13,17 +15,38 @@ class Postcomment
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: "AUTO")]
     #[ORM\Column(type: "integer")]
+    #[Groups("Comment")]
+
     private $id;
 
     #[ORM\Column(type: "text", unique: false)]
     #[Assert\NotBlank (message: "content is required") ]
     #[Assert\Length(min:3,minMessage: "lenght min 3")]
+    #[Groups("Comment")]
+
     private $content;
    
 
     #[ORM\ManyToOne(targetEntity: Post::class, inversedBy: "comments")]
     #[ORM\JoinColumn(name: "post_id", referencedColumnName: "id")]
     private $post;
+    #[ORM\Column(type:"boolean", options:['default' => false])]
+    #[Groups("Comment")]
+    private $approved = false;
+
+   public function isApproved(): bool
+   {
+       return $this->approved;
+   }
+
+   public function setApproved(bool $approved): self
+   {
+       $this->approved = $approved;
+
+       return $this;
+   }
+
+
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: "comments")]
     #[ORM\JoinColumn(name: "user_id", referencedColumnName: "id")]
@@ -32,7 +55,7 @@ class Postcomment
     #[ORM\Column(type: "datetime")]
     #[Assert\DateTime]
     private $posted_at ;
-
+  
     #[ORM\PrePersist]
     public function setPostedAt(): void
     {
