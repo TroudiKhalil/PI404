@@ -1,0 +1,112 @@
+{% extends 'admin.html.twig' %}
+{% block body %}
+
+
+
+<div class="page-wrapper">
+  <div class="container-fluid">
+            
+               <a href="{{ path('app_addappoinment') }}"><button type="button" class="btn btn-gd btn-outline-info">ajouter </button></a>
+                <div class="row page-titles">
+          
+                    <div class="col-md-7 align-self-center">
+                        
+                    </div>
+                    
+                </div>
+               
+                <div class="row">
+                   
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+
+
+
+</div>
+         <h4 class="card-title">table des type des Rendez-Vous</h4>
+                                
+   <div class="form-check">
+              <div>
+                               
+                                <ul class="navbar-nav w-100" style="margin-top: 18px;">
+                        <li class="nav-item w-100">
+                            <form name="Search-method" id="Search-method"method="post" class="forms-sample" style="margin-left: 300px;">
+                                <div class="form-group col-md-5">
+                                    <label style="margin-top: 11px;margin-left: 10px;margin-right: 14px;padding-bottom: 7px;;">Option Recherche</label>
+                                    <select name="optionsearch" class="js-example-basic-single" style="width: 200px;height: 38px; color: white; background-color: #191c24; border-radius: 4px;text-align: center;border: 2px solid #0090e7;margin-right: 15px;">
+                                        <option value="">Choisi un Critére</option>
+                                        <option value="nomtype">Nom vehicule</option>
+                                        <input name="Search" type="text" class="form-control" placeholder="Search Events" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-sm btn-primary" type="Submit">Search</button>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-7">
+                                    <div class="input-group">
+                                       
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+                                </div>
+                                </div>
+                               
+                                <form method="post" class="forms-sample" style="margin-left: 400px" >
+                                    <label class="form-check-label" >
+                                        <input type="radio"   value="nomtype"  >Nom</label>
+                                        <button type="Submit" class="btn btn-success btn-fw" style="margin: auto; ">Sort</button>
+                                </form>
+
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                
+                                                <th>Type</th>
+                                                <th>Description</th>
+                                                <th>Actions</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        
+                                        <tbody>
+                                            <tr>
+                                            <td>{{ id }}</td>
+                                                <td>{{ nom }}</td>
+                                                <td>{{ description }}</td>
+                                                <td>
+                                              
+                                                </td>
+                                                
+                                            </tr>
+
+                                        </tbody>
+                                       
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+         </div>
+       
+          
+
+
+                            
+        
+        </div>
+
+{% endblock %}
+
+
+
+
+
+
+
+

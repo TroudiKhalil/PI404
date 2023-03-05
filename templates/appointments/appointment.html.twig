@@ -1,0 +1,26 @@
+{% block body %}
+    <h1>Appointment Details</h1>
+    <p>Doctor name: {{ appointment.doctor.name }}</p>
+    
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet'/>
+    <div id='map' style='width: 100%; height: 400px;'></div>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZmplcmJpIiwiYSI6ImNrdWp6bXJhdTE4MGwyd215bzhpb3c0OGYifQ.jW0ZovMg20DoAaiOtGkPhg';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/dark-v10',
+            center: [{{ appointment.doctor.longitude }}, {{ appointment.doctor.latitude }}],
+            zoom: 5
+        });
+
+        // Add a custom marker to the map
+        var marker = new mapboxgl.Marker({
+            color: 'red'
+        })
+        .setLngLat([{{ appointment.doctor.longitude }}, {{ appointment.doctor.latitude }}])
+        .setPopup(new mapboxgl.Popup({ offset: 25 })
+            .setHTML('<p>Doctor name: {{ appointment.doctor.name }}</p>, <img width="30px" height="30px" src="https://t3.ftcdn.net/jpg/02/60/04/08/360_F_260040863_fYxB1SnrzgJ9AOkcT0hoe7IEFtsPiHAD.jpg" />'))
+        .addTo(map);
+    </script>
+{% endblock %}
