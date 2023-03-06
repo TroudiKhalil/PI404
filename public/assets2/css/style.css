@@ -1,0 +1,66 @@
+/*
+	Theme Name: Maxi Health
+	Created : 
+	Updated : 
+	Version: 1.0
+
+*/
+
+/*
+	[Table of contents]
+
+	## Global
+		- Font Settings
+		- Padding/Margin
+
+	## Header
+		-- Top Header
+		-- Middle Header
+
+	## Footer
+		-- Contact Details
+		-- Footer Widget
+		-- Bottom Footer
+		
+	## Page Banner
+	
+	## Responsive
+		-- min-width: 992 to max-width: 1200
+		-- min-width: 768 to max-width: 991
+		-- min-width: 319 to max-width: 767
+		-- min-width: 319 to max-width: 479
+		-- max-width: 991
+		-- min-width: 1200
+*/
+
+/* ## Global */
+.btn {
+	display: block;
+	margin: 0 auto;
+  }
+  
+  
+  .blur-background {
+    backdrop-filter: blur(5px);
+}
+.btn-custom {
+	background-color: #f0600c;
+	color:#000;
+  }
+  .btn-bciel {
+	background-color: #a2daf0;
+	color:#000;
+  }
+  
+.navbar1 {
+	border-radius: 10px;
+  }
+  .footer1 {
+	background-color: transparent;
+	border-top: 1px solid #9fafcc;
+	padding: 20px 0;
+  }
+  
+h1 {
+	text-align: center;
+  }

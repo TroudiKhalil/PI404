@@ -1,0 +1,34 @@
+ 
+
+<div class="container">
+ 
+    <div class="col-md-7 mx-10">
+{{form_start(form,{'attr':{'novalidate':'novalidate'}})}}
+<table>   
+   <div class="form-group">  
+ <div class="form-group">
+ {{ form_label(form.id_Consultation,"Id de consultation") }} 
+ {{ form_widget(form.id_Consultation, {'attr':{'class':'form-control','placeholder': 'Exemple : 2'}})}} 
+</div>
+ {{ form_label(form.medicaments,"Nom des Medicamments") }} 
+  {{ form_widget(form.medicaments , { 'expanded': true },  {'attr': {'class': 'ma-classe-css'}}, {'attr':{'class':'form-control','placeholder': 'Example : Doliprane'}})}} 
+ </div>
+<div class="form-group">
+ <i class="fas fa-calendar input-prefix"> {{ form_label(form.date_creation,"Créer à ") }} </i>
+{{ form_widget(form.date_creation  , { 'attr': {'class': 'datepicker'} }) }} 
+</div>
+<div class="form-group">
+ {{ form_label(form.frequence," Frequence Fois/Jours") }} 
+ {{ form_widget(form.frequence, {'attr':{'class':'form-control','placeholder': 'Exemple : 2'}})}} 
+</div>
+<div class="form-group">
+ {{ form_label(form.dose,"dosage (en mg)") }} 
+ {{ form_widget(form.dose, {'attr':{'class':'form-control','placeholder': 'Exemple : 20'}})}} 
+</div>
+
+</table>
+    <button class="btn btn-primary mb-2"  type="submit" name="submit" id="submit">{{ button_label|default('Envoyer') }} </button>
+{{ form_end(form) }}
+</div>
+  </div>
+</div>

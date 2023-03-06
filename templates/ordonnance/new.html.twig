@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Ordonnance{% endblock %}
+
+{% block body %}
+   <h1 class="mb-3 text-primary text-center my-105">Créer une Ordonnance</h1>
+
+    {{ include('ordonnance/_form.html.twig') }}
+    <a href="{{ path('app_ordonnance_index') }}">   <-  Retourner à la liste </a>
+ 
+  <button class="btn"> {{ button_label|default('Save') }} </button>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+    <div class="mr-auto">Date: {{ "now"|date("Y-m-d") }}</div>
+     <div class="ml-auto">Signature: ______________________</div>
+       
+    </div>
+  </div>   </div>
+</div>
+    {% endblock %}
