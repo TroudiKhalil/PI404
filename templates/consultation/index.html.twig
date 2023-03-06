@@ -1,0 +1,32 @@
+ {% extends 'base.html.twig' %}
+{% block title %} New Ordonnance{% endblock %}
+ 
+{% block body %}
+ <table> 
+ <th> 
+ <div class="col-1">
+ <img src="https://img.freepik.com/vecteurs-premium/illustration-consultation-medicale-enceinte-ligne-dessin-anime-medecin-personnage-consultant-femme-patiente-dans-application-rendez-vous-chat-via-smartphone-sante-medecine-grossesse-blanc_213110-491.jpg?w=2000" class="rounded"  class="float-left"  alt="Logo HTML w3" style="width:65%; height:500">
+           </th>
+            <th>      
+              <div class="vw-100 bg-info mt-2  p-2 ">
+</div>
+<a href="{{ path('app_meet', {'id_User': 'user', 'id_medcin': 'medcin'}) }}" target="_blank">Accéder à la réunion</a>
+
+ <div id="meet" class="meet"></div>
+ <script src='https://meet.jit.si/external_api.js'></script>
+<script>
+const domain = 'meet.jit.si';
+const options = {
+    roomName: '{user }}{{ medcin}}',
+    width: 700,
+    height: 700,
+    parentNode: document.querySelector('#meet')
+};
+const api = new JitsiMeetExternalAPI(domain, options);
+        </div>
+        </th>
+        </table>
+        <div id="meet" class="meet"></div>
+
+        </script>
+{% endblock %}

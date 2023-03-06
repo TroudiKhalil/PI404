@@ -3,6 +3,8 @@
 {% block title %}Edit Ordonnance{% endblock %}
 
 {% block body %}
+<div style="margin-left: 280px; width: 80%">
+
     <h1>Edit Ordonnance</h1>
 
     {{ include('ordonnanceadmin/_form.html.twig', {'button_label': 'Update'}) }}
@@ -10,4 +12,5 @@
     <a href="{{ path('app_ordonnanceadmin_index') }}">back to list</a>
 
     {{ include('ordonnanceadmin/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

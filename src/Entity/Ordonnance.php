@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: OrdonnanceRepository::class)]
@@ -15,22 +16,31 @@ class Ordonnance
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups("Ordonnances")]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups("Ordonnances")]
+
     private ?string $frequence = null;
 
     #[ORM\Column(length: 255)] 
+    #[Groups("Ordonnances")]
+
     private ?string $dose = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
+
     private ?Consultation $id_Consultation = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+
     #[Assert\Type("\DateTimeInterface")]
 #[Assert\GreaterThanOrEqual(value: "today", message: "La date de création doit être supérieure ou égale à la date d'aujourd'hui.")]
-    private ?\DateTimeInterface $date_creation = null;
+#[Groups("Ordonnances")]
+
+private ?\DateTimeInterface $date_creation = null;
 
     #[ORM\ManyToMany(targetEntity: Medicament::class, inversedBy: 'ordonnances')]
     private Collection $medicaments;

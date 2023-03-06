@@ -21,7 +21,7 @@ class Fiche
     #[ORM\OneToOne(inversedBy: 'fiche', cascade: ['persist', 'remove'])]
     private ?Consultation $IdConsultation = null;
 
-     
+
     public function getId(): ?int
     {
         return $this->id;

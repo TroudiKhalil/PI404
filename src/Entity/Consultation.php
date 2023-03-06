@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ConsultationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ConsultationRepository::class)]
 class Consultation
@@ -12,6 +13,8 @@ class Consultation
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups("Ordonnances")]
+
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'Consultations')]
@@ -30,7 +33,8 @@ class Consultation
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_fin = null;
-
+   
+     
     #[ORM\OneToOne(mappedBy: 'IdConsultation', cascade: ['persist', 'remove'])]
     private ?Fiche $fiche = null;
 

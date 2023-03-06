@@ -20,7 +20,16 @@ class OrdonnanceType extends AbstractType
         $builder
             ->add('frequence')
             ->add('dose')
-            ->add('date_creation')
+            ->add('date_creation'  ,DateTimeType::class, [
+                'data' => new \DateTime(),
+                'label' => 'Choisissez votre date de fin',
+                
+                'required' => true ,
+                'widget' => 'single_text',
+    
+                'attr' => [
+                    'class' => 'form-control datetimepicker-input',
+                ],])
             ->add('id_Consultation')
             
             ->add('medicaments' , EntityType::class,[

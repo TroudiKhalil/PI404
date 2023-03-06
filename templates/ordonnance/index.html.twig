@@ -3,7 +3,7 @@
 {% block title %}Ordonnance index{% endblock %}
 
 {% block body %}
-    <h1>Ordonnance index</h1>
+      <div class="  p-1 text-center"> <h1  class=" mb-3 text-primary ">Liste Ordonnances</h1> </div>
 
     <table class="table">
         <thead>
@@ -16,7 +16,7 @@
                 <th>Patient</th>
                 <th>Médicaments</th>
                 <th>Date_creation</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -31,8 +31,10 @@
                 <td>{{ ordonnance.medicaments|join(' | ')}}</td>
                 <td>{{ ordonnance.dateCreation ? ordonnance.dateCreation|date('Y-m-d ') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_ordonnance_show', {'id': ordonnance.id}) }}">show</a>
-                    <a href="{{ path('app_ordonnance_edit', {'id': ordonnance.id}) }}">edit</a>
+                    <a href="{{ path('app_ordonnance_show', {'id': ordonnance.id}) }}">SHOW</a>
+                    <a href="{{ path('app_ordonnance_edit', {'id': ordonnance.id}) }}">EDIT</a>
+                
+   <a href="{{ path('app_ordonnance_imprimmaison', {'id':ordonnance.id}) }}">PDF</a>
                 </td>
             </tr>
         {% else %}

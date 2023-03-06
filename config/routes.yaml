@@ -1,3 +1,7 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+#imprimmaison:
+ #   path: /ordonnance/{id}/imprimmaison
+  #  controller: App\Controller\OrdonnanceController::imprimmaison
+   # methods: GET

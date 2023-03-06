@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: MedicamentRepository::class)]
 class Medicament
@@ -32,7 +33,10 @@ class Medicament
     #[ORM\JoinColumn(nullable: false)]
     private ?Categorie $id_categorie = null;
 
+    
     #[ORM\ManyToMany(targetEntity: Ordonnance::class, mappedBy: 'medicaments')]
+    #[Groups("Ordonnances")]
+
     private Collection $ordonnances;
 
     public function __construct()
