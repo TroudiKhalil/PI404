@@ -23,11 +23,11 @@
 {% endblock %}
 {% block body %}
 {% for message in app.flashes('notification') %}
-+        <div class="alert alert-info alert-dismissible fade show">
-+            {{ message }}
-+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-+        </div>
-+    {% endfor %}
+        <div class="alert alert-info alert-dismissible fade show">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+    {% endfor %}
 <div class="row" style="margin-top:1%;">
     <div class="col-md-6"> <h1 class="text text-primary" style="text-align:center;">Liste des Medicaments</h1></div>
      <div class="col-md-2"> <input type="text" id="search-input" name="q" onfocus="placeholder='chercher'">
