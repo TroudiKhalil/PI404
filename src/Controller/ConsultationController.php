@@ -14,6 +14,7 @@ class ConsultationController extends AbstractController
         return $this->render('consultation/index.html.twig', [
             'controller_name' => 'ConsultationController',
         ]);
+        kkl
     }*/
     #[Route('/meet/{id_User}/{id_medcin}', name: 'app_meet')]
     public function meet($id_User, $id_medcin)
