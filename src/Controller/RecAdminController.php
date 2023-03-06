@@ -13,6 +13,7 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use App\Service\SendMailService;
+use Psr\Log\LoggerInterface;
 
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 
@@ -23,6 +24,13 @@ use App\Form\SendMailType;
 #[Route('/rec/admin')]
 class RecAdminController extends AbstractController
 {
+    private $logger;
+
+    public function __construct(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
+
     #[Route('/', name: 'app_rec_admin_index', methods: ['GET'])]
     public function index(ReclamationRepository $reclamationRepository): Response
     {
@@ -62,8 +70,12 @@ class RecAdminController extends AbstractController
 
     public function sendEmail(MailerInterface $mailer, Request $request, Reclamation $reclamation): Response
     {
+        $this->logger->info("test");
         $form =$this->createForm(SendMailType::class,null);
+        $this->logger->info("test1");
         $form->handleRequest($request);
+        $this->logger->info("test2");
+        $this->logger->info($request);
         if ($form->isSubmitted() && $form->isValid())
         {
             dump('Formulaire soumis!');
