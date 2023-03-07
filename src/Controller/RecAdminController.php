@@ -14,7 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use App\Service\SendMailService;
 use Psr\Log\LoggerInterface;
-
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 
 
@@ -40,7 +39,7 @@ class RecAdminController extends AbstractController
     }
 
     #[Route('/new', name: 'app_rec_admin_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ReclamationRepository $reclamationRepository, ): Response
+    public function new(Request $request, ReclamationRepository $reclamationRepository ): Response
     {
         $reclamation = new Reclamation();
         $form = $this->createForm(Reclamation1Type::class, $reclamation);
@@ -48,7 +47,6 @@ class RecAdminController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $reclamationRepository->save($reclamation, true);
-
             return $this->redirectToRoute('app_rec_admin_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -87,12 +85,10 @@ class RecAdminController extends AbstractController
                 ->subject((string)$subject)
                 ->text('Sending emails is fun again!')
                 ->html("<p>$message</p>");
-                try {
-        $mailer->send($email);
-        $this->addFlash('success', 'Votre message a été envoyé avec succès !');
-    } catch (TransportExceptionInterface $e) {
-        $this->addFlash('error', 'Une erreur s\'est produite lors de l\'envoi de votre message : '.$e->getMessage());
-    }
+                 $mailer->send($email);
+                 $this->addFlash('success', 'Votre message a été envoyé avec succès !');
+                
+    
 
             return $this->redirectToRoute('app_rec_admin_index');
         }

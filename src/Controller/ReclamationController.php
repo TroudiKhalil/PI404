@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Notifier\Notification\Notification;
+use Symfony\Component\Notifier\NotifierInterface;
 
 #[Route('/reclamation')]
 class ReclamationController extends AbstractController
@@ -28,7 +30,7 @@ class ReclamationController extends AbstractController
  //   ]);
   //  } 
     #[Route('/new', name: 'app_reclamation_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ReclamationRepository $reclamationRepository): Response
+    public function new(Request $request, ReclamationRepository $reclamationRepository,NotifierInterface $notifier): Response
     {
         $reclamation = new Reclamation();
         $form = $this->createForm(ReclamationType::class, $reclamation);
@@ -36,7 +38,7 @@ class ReclamationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $reclamationRepository->save($reclamation, true);
-
+            $notifier->send(new Notification('ray jetek reclamation', ['browser']));
             return $this->redirectToRoute('app_reclamation_index', [], Response::HTTP_SEE_OTHER);
         }
 
