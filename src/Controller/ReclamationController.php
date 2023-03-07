@@ -38,7 +38,7 @@ class ReclamationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $reclamationRepository->save($reclamation, true);
-            $notifier->send(new Notification('ray jetek reclamation', ['browser']));
+            $notifier->send(new Notification('Une nouvelle reclamation est ajoutée', ['browser']));
             return $this->redirectToRoute('app_reclamation_index', [], Response::HTTP_SEE_OTHER);
         }
 

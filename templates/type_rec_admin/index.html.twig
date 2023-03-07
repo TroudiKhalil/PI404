@@ -7,7 +7,6 @@
     <table class="table" >
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nom</th>
                 <th>actions</th>
             </tr>
@@ -15,7 +14,6 @@
         <tbody>
         {% for type_reclamation in type_reclamations %}
             <tr>
-                <td>{{ type_reclamation.id }}</td>
                 <td>{{ type_reclamation.nom }}</td>
                 <td>
                     <a class="btn btn-warning" href="{{ path('app_type_rec_admin_show', {'id': type_reclamation.id}) }}">show</a>
@@ -30,6 +28,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_type_rec_admin_new') }}">Nouveau type</a>
+    <a class="btn btn-primary" href="{{ path('app_type_rec_admin_new') }}">Nouveau type</a>
 </div>
 {% endblock %}

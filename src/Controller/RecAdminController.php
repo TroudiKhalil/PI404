@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Reclamation;
 use App\Form\Reclamation1Type;
 use App\Repository\ReclamationRepository;
+use App\Repository\TypeReclamationRepository;
 use App\Form\TraiterType; 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,10 +32,50 @@ class RecAdminController extends AbstractController
     }
 
     #[Route('/', name: 'app_rec_admin_index', methods: ['GET'])]
-    public function index(ReclamationRepository $reclamationRepository): Response
+    public function index(ReclamationRepository $reclamationRepository,TypeReclamationRepository $typereclamationRepository): Response
     {
+        $rec=$reclamationRepository->findAll();
+        $tr=$typereclamationRepository->findAll();
+        $nbr=0;
+        $nbt=0;
+        foreach ($rec as $r){
+            $nbr++;
+        }
+        foreach ($tr as $t){
+            $nbt++;
+        }
+        $res=[];
+        foreach($tr as $t){
+            $idt=$t->getId();
+            $i=0;
+            foreach($rec as $r){ 
+                $idr=$r->getIdTr()->getId();
+                if ($idr==$idt){
+                    $i++;
+                }
+            }
+            $res[]=[
+                'type'=> $t,
+                'nb'=>$i,
+            ];
+        }
+        $nbc=0;
+        $nbtr=0;
+        foreach($rec as $r){
+            $e=$r->getEtat();
+            if ($e=="traitement en cours"){
+                $nbc++;
+            }
+            else{
+                $nbtr++;
+            }
+        }
         return $this->render('rec_admin/index.html.twig', [
             'reclamations' => $reclamationRepository->findAll(),
+            'res' => $res,
+            'nbr' => $nbr,
+            'nbc' => $nbc,
+            'nbtr' => $nbtr,
         ]);
     }
 
@@ -68,11 +109,8 @@ class RecAdminController extends AbstractController
 
     public function sendEmail(MailerInterface $mailer, Request $request, Reclamation $reclamation): Response
     {
-        $this->logger->info("test");
         $form =$this->createForm(SendMailType::class,null);
-        $this->logger->info("test1");
         $form->handleRequest($request);
-        $this->logger->info("test2");
         $this->logger->info($request);
         if ($form->isSubmitted() && $form->isValid())
         {
@@ -83,7 +121,7 @@ class RecAdminController extends AbstractController
                 ->from('emna.mazlout@esprit.tn')
                 ->to((string)$reclamation->getEmail())
                 ->subject((string)$subject)
-                ->text('Sending emails is fun again!')
+                ->text('On essaye de traiter vottre reclamation!')
                 ->html("<p>$message</p>");
                  $mailer->send($email);
                  $this->addFlash('success', 'Votre message a été envoyé avec succès !');

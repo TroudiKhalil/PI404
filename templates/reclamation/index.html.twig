@@ -25,8 +25,8 @@
                 <td>{{ reclamation.cmnt }}</td>
                 <td>{{ reclamation.etat }}</td>
                 <td>
-                    <a href="{{ path('app_reclamation_show', {'id': reclamation.id}) }}">show</a>
-                    <a href="{{ path('app_reclamation_edit', {'id': reclamation.id}) }}">edit</a>
+                    <a class="btn btn-warning" href="{{ path('app_reclamation_show', {'id': reclamation.id}) }}">show</a>
+                    <a class="btn btn-warning" href="{{ path('app_reclamation_edit', {'id': reclamation.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -38,5 +38,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_reclamation_new') }}">Create new</a>
+    <a class="btn btn-danger" href="{{ path('app_reclamation_new') }}">Create new</a>
 {% endblock %}
