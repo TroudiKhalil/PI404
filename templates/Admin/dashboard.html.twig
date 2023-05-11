@@ -9,17 +9,50 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex no-block">
-                                    <div>
-                                        <h5 class="card-title mb-0">Sales Chart</h5>
-                                    </div>
-                                    <div class="ms-auto">
-                                        <ul class="list-inline text-center font-12">
-                                            <li><i class="fa fa-circle text-success"></i> SITE A</li>
-                                            <li><i class="fa fa-circle text-info"></i> SITE B</li>
-                                            <li><i class="fa fa-circle text-primary"></i> SITE C</li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                  
+
+    {% block content %}
+     
+        
+
+
+            <div class="container">
+                <h1>Statistiques </h1>
+                <p>nombre des réservations par date</p>
+
+                <canvas id="commandes" width="400" height="100"></canvas>
+            </div>
+
+
+        {% block ts%}
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
+            <script>
+                let commandes = document.querySelector("#commandes")
+                let commandeGraph = new Chart(commandes, {
+                    type: "line",
+                    data: {
+                        labels: {{ dates|raw }},
+                        datasets: [{
+                            label: "Nombre des RendezVous",
+                            data: {{ commandeCount|raw }}
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                })
+            </script>
+        {% endblock %}
+         {% endblock %}
+
+
+
                                 <div class="" id="sales-chart" style="height: 355px;"></div>
                             </div>
                         </div>
@@ -27,23 +60,40 @@
                     <!-- Column -->
                     <div class="col-lg-4">
                         <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex mb-4 no-block">
-                                    <h5 class="card-title mb-0 align-self-center">Our Visitors</h5>
-                                    <div class="ms-auto">
-                                        <select class="form-select b-0">
-                                            <option selected="">Today</option>
-                                            <option value="1">Tomorrow</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div id="visitor" style="height:260px; width:100%;"></div>
-                                <ul class="list-inline mt-4 text-center font-12">
-                                    <li><i class="fa fa-circle text-purple"></i> Tablet</li>
-                                    <li><i class="fa fa-circle text-success"></i> Desktops</li>
-                                    <li><i class="fa fa-circle text-info"></i> Mobile</li>
-                                </ul>
-                            </div>
+                        
+    <div style="width:400px;">
+       <canvas id="myChart"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: [
+                    {% for r in res %}
+                        '{{ r.cat }}',
+                    {% endfor %}
+                ],
+                datasets: [{
+                    label: 'Chart Data',
+                    data: [
+                        {% for item in res %}
+                            {{ item.nb }},
+                        {% endfor %}
+                    ],
+                   chart: {
+                        type: 'pie',
+                        toolbar: {
+                            show: true
+                        }
+                    },
+                }]
+            },
+            options: {}
+        });
+    </script>
+-->
                         </div>
                     </div>
                 </div>

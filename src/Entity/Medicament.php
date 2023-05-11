@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\MedicamentRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: MedicamentRepository::class)]
 class Medicament
@@ -12,23 +13,37 @@ class Medicament
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    #[Groups("meds")]
+    private ?int $id;
 
     #[ORM\Column(length: 255)]
+    #[Groups("meds")]
     private ?string $nom = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups("meds")]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups("meds")]
     private ?string $image = null;
 
     #[ORM\Column]
+    #[Groups("meds")]
     private ?float $prix = null;
 
     #[ORM\ManyToOne(inversedBy: 'medicaments')]
     #[ORM\JoinColumn(nullable: false)]
+<<<<<<< Updated upstream
     private ?categorie $id_categorie = null;
+=======
+    #[Groups("meds")]
+    private ?Categorie $id_categorie = null;
+    public function __toString()
+    {
+        return $this->nom;
+    }
+>>>>>>> Stashed changes
 
     public function getId(): ?int
     {

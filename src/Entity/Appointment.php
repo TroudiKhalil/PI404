@@ -38,7 +38,25 @@ class Appointment
     #[Assert\NotBlank (message: "il faut ajouter une catégorie") ]
     #[Groups("appoinment")]
     private ?string $categorie = null;
+<<<<<<< Updated upstream
 
+=======
+    #[ORM\Column(type:"boolean", options:['default' => false])]
+    #[Groups("appoinment")]
+    private $approved = true;
+
+   public function isApproved(): bool
+   {
+       return $this->approved;
+   }
+
+   public function setApproved(bool $approved): self
+   {
+       $this->approved = $approved;
+
+       return $this;
+   }
+>>>>>>> Stashed changes
     public function getId(): ?int
     {
         return $this->id;

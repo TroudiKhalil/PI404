@@ -26,9 +26,15 @@ class Ordonnance
 
     #[ORM\Column(length: 255)] 
     #[Groups("Ordonnances")]
+<<<<<<< Updated upstream
 
     private ?string $dose = null;
+=======
+>>>>>>> Stashed changes
 
+    private ?string $dose = null;
+    #[ORM\Column(length: 255)] 
+    private String $Nom_Medicament;
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
 
@@ -42,6 +48,7 @@ class Ordonnance
 
 private ?\DateTimeInterface $date_creation = null;
 
+<<<<<<< Updated upstream
     #[ORM\ManyToMany(targetEntity: Medicament::class, inversedBy: 'ordonnances')]
     private Collection $medicaments;
 
@@ -49,6 +56,10 @@ private ?\DateTimeInterface $date_creation = null;
     {
         $this->medicaments = new ArrayCollection();
     }
+=======
+  
+
+>>>>>>> Stashed changes
 
     public function getId(): ?int
     {
@@ -106,6 +117,7 @@ private ?\DateTimeInterface $date_creation = null;
         return $this;
     }
 
+<<<<<<< Updated upstream
     /**
      * @return Collection<int, Medicament>
      */
@@ -130,3 +142,19 @@ private ?\DateTimeInterface $date_creation = null;
         return $this;
     }
 }
+=======
+   
+    public function getNomMedicament(): String
+    {
+        return $this->Nom_Medicament;
+    }
+
+    public function setNomMedicament(String $Nom_Medicament): self
+    {
+            $this->Nom_Medicament= $Nom_Medicament;
+        
+
+        return $this;
+    }
+}
+>>>>>>> Stashed changes

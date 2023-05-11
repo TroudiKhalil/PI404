@@ -112,6 +112,7 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
+<<<<<<< Updated upstream
                         <li> <a class="waves-effect waves-dark" href="{{ path('app_dashboard') }}" aria-expanded="false"><i
                                     class="fa fa-tachometer"></i><span class="hide-menu">Dashboard</span></a>
                         </li>
@@ -120,6 +121,45 @@
                         </li>
                         <li> <a class="waves-effect waves-dark" href="{{ path('comment') }}" aria-expanded="false"><i
                                     class="fa fa-table"></i><span class="hide-menu">Tablescomment</span></a>
+=======
+                        <li> <a class="waves-effect waves-dark" href={{ path("dash")}} aria-expanded="false"><i
+                                    class="fa fa-tachometer"></i><span class="hide-menu">Dashboard</span></a>
+                        </li>
+                       <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+          <i class="fa fa-user-circle-o"></i><span>Rendez-vous</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="components-alerts.html">
+                    <a class="nav-link collapsed" href="{{ path('stat') }}">
+              <i class="bi bi-circle"></i><span>Statistique</span>
+            </a>
+          </li>
+        
+          <li>
+            <a href="components-badges.html">
+                                <a class="nav-link collapsed" href="{{ path('listeall') }}">
+
+              <i class="bi bi-circle"  ></i><span>List Rendez-vous</span>
+            </a>
+          </li>
+          <li>
+            <a href="components-badges.html">
+                                <a class="nav-link collapsed" href="{{ path('app_type_list') }}">
+
+              <i class="bi bi-circle"   ></i><span>type</span>
+            </a>
+          </li>
+          
+        </ul>
+      </li>
+                        <li> <a class="waves-effect waves-dark" href={{path('app_type_rec_admin_index')}} aria-expanded="false"><i
+                                    class="fa fa-table"></i><span class="hide-menu">Type Reclamation</span></a>
+                        </li> 
+                        <li> <a class="waves-effect waves-dark" href={{path('app_rec_admin_index')}}  aria-expanded="false"><i
+                                    class="fa fa-smile-o"></i><span class="hide-menu">Reclamation</span></a>
+>>>>>>> Stashed changes
                         </li>
                         <li> <a class="waves-effect waves-dark" href="{{ path('app_tables') }}" aria-expanded="false"><i
                                     class="fa fa-table"></i><span class="hide-menu">TablePost</span></a>
@@ -133,9 +173,15 @@
                         <li> <a class="waves-effect waves-dark" href="pages-blank.html" aria-expanded="false"><i
                                     class="fa fa-bookmark-o"></i><span class="hide-menu">Blank</span></a>
                         </li>
-                        <li> <a class="waves-effect waves-dark" href="pages-error-404.html" aria-expanded="false"><i
-                                    class="fa fa-question-circle"></i><span class="hide-menu">404</span></a>
+                                 
+                        <li> <a class="waves-effect waves-dark" href="{{ path('comment') }}" aria-expanded="false"><i
+                                    class="fa fa-question-circle"></i><span class="hide-menu">commentaire</span></a>
                         </li>
+                                   
+                        <li> <a class="waves-effect waves-dark" href="{{ path('app_doctor_index') }}" aria-expanded="false"><i
+                                    class="fa fa-question-circle"></i><span class="hide-menu">Doctors</span></a>
+                        </li>
+                        
                     </ul>
                     
                 </nav>

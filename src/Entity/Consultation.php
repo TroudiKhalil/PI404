@@ -127,4 +127,8 @@ class Consultation
 
         return $this;
     }
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes

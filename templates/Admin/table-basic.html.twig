@@ -10,7 +10,11 @@
                                     <label style="margin-top: 11px;margin-left: 10px;margin-right: 14px;padding-bottom: 7px;;">Option Recherche</label>
                                     <select name="optionsearch" class="js-example-basic-single" style="width: 200px;height: 38px; color: white; background-color: #191c24; border-radius: 4px;text-align: center;border: 2px solid #0090e7;margin-right: 15px;">
                                         <option value="">Choisi un Critére</option>
+<<<<<<< Updated upstream:templates/Admin/table-basic.html.twig
                                         <option value="title">Nom vehicule</option>
+=======
+                                        <option value="title">title</option>
+>>>>>>> Stashed changes:templates/admin/table-basic.html.twig
                                         <input name="Search" type="text" class="form-control" placeholder="Search Events" aria-label="Recipient's username" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-sm btn-primary" type="Submit">Search</button>
@@ -45,15 +49,27 @@
                                         <thead class="table-dark">
                                             <tr>
                                                 
+<<<<<<< Updated upstream:templates/Admin/table-basic.html.twig
                                                 <th>Type</th>
                                                 <th>Description</th>
                                                 <th>Actions</th>
+=======
+                                                <th>Id</th>
+                                                <th>title</th>
+                                                <th>Description</th>
+                                                 <th>Actions</th>
+>>>>>>> Stashed changes:templates/admin/table-basic.html.twig
                                                 
                                             </tr>
                                         </thead>
                                         {% for posts in posts %}
                                         <tbody>
                                             <tr> 
+<<<<<<< Updated upstream:templates/Admin/table-basic.html.twig
+=======
+                                                <a href={{ path('app_appointments',{'id': app.user.id}) }} ><button type="button" class="btn btn-sm btn-outline-danger">Retour au liste</button></a>
+
+>>>>>>> Stashed changes:templates/admin/table-basic.html.twig
                                                 <td>{{ posts.id }}</td>
                                                 <td>{{ posts.title }}</td>
                                                 <td>{{ posts.description }}</td>
@@ -79,7 +95,11 @@
 
                                 <div class="form-check">
                                     <label class="form-check-label" style="width: 92px;margin-left: -2px;margin-right: 10px;">
+<<<<<<< Updated upstream:templates/Admin/table-basic.html.twig
                                         <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="title">Nom</label>
+=======
+                                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="title">title</label>
+>>>>>>> Stashed changes:templates/admin/table-basic.html.twig
                                 </div>
                               <div class="form-check">
                                     <label class="form-check-label" style="width: 92px;margin-left: -2px;margin-right: 10px;">
@@ -87,7 +107,11 @@
                                 </div>
                               <div class="form-check">
                                     <label class="form-check-label" style="width: 92px;margin-left: -2px;margin-right: 10px;">
+<<<<<<< Updated upstream:templates/Admin/table-basic.html.twig
                                         <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="dispovh">dispo</label>
+=======
+                                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="dispovh">description</label>
+>>>>>>> Stashed changes:templates/admin/table-basic.html.twig
                                 </div>
                             
                                 </div>
@@ -111,4 +135,10 @@
             
            
         </div>
+<<<<<<< Updated upstream:templates/Admin/table-basic.html.twig
 {% endblock %}
+=======
+{% endblock %}
+
+
+>>>>>>> Stashed changes:templates/admin/table-basic.html.twig

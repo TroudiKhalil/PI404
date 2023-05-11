@@ -41,7 +41,7 @@ class Reclamation
 
     #[ORM\ManyToOne(inversedBy: 'reclamations')]
     #[ORM\JoinColumn(nullable: true)]
-    private ?user $id_user = null;
+    private ?User $id_user = null;
 
     #[ORM\ManyToOne(inversedBy: 'reclamations')]
     #[ORM\JoinColumn(nullable: false)]
@@ -113,12 +113,12 @@ class Reclamation
         return $this;
     }
 
-    public function getIdUser(): ?user
+    public function getIdUser(): ?User
     {
         return $this->id_user;
     }
 
-    public function setIdUser(?user $id_user): self
+    public function setIdUser(?User $id_user): self
     {
         $this->id_user = $id_user;
 

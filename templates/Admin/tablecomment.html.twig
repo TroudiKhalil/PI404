@@ -25,8 +25,14 @@
                                         <thead class="table-dark">
                                             <tr>
                                                 
+<<<<<<< Updated upstream:templates/Admin/tablecomment.html.twig
                                                 <th>Type</th>
                                                 <th>Id</th>
+=======
+                                                <th>Id</th>
+                                                <th>delete</th>
+                                                <th>approve</th>
+>>>>>>> Stashed changes:templates/admin/tablecomment.html.twig
                                                 
                                                 
                                             </tr>
@@ -34,16 +40,26 @@
                                         {% for comment in comments %}
                                         <tbody>
                                             <tr> 
+<<<<<<< Updated upstream:templates/Admin/tablecomment.html.twig
                                                 <td>{{ comment.content }}</td>
                                                 <td>{{ comment.getUser().getUsername() }}</td>
                                               
                                                 <td>
                                                <a href="{{ path('delete_comment', {'id': comment.id}) }}"><button type="button" class="btn btn-sm btn-outline-danger">delete</button></a>
+=======
+                                                <td>{{ comment.content }}</td>                                              
+                                                <td>
+                                               <a href="{{ path('delete_commentadmin', {'id': comment.id}) }}"><button type="button" class="btn btn-sm btn-outline-danger">delete</button></a>
+>>>>>>> Stashed changes:templates/admin/tablecomment.html.twig
                                                <hr>
                                                 </td>
                                                 <td>
                                                          {% if not comment.isApproved() %}
+<<<<<<< Updated upstream:templates/Admin/tablecomment.html.twig
             <button class="approve-button btn btn-sm btn-outline-primary " data-comment-id="{{ comment.getId() }}">Approve</button>
+=======
+            <button class="approve-button btn btn-sm btn-outline-primary " data-comment-id="{{ comment.getId() }}" onclick="refreshPage()">Approve</button>
+>>>>>>> Stashed changes:templates/admin/tablecomment.html.twig
 
         {% endif %}
                                                 </td>
@@ -77,6 +93,15 @@
                 })
                 .catch(error => console.error(error));
         });
+<<<<<<< Updated upstream:templates/Admin/tablecomment.html.twig
     });
+=======
+  
+    });
+       function refreshPage() {
+    // Rafraîchir la page
+          window.location.href = window.location.href;
+    }
+>>>>>>> Stashed changes:templates/admin/tablecomment.html.twig
 </script>
 {% endblock %}
